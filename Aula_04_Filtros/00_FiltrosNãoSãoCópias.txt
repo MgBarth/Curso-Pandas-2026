@@ -1,0 +1,19 @@
+###########################################################################
+
+                        FILTROS NÃO SÃO CÓPIAS
+
+###########################################################################
+
+Quando realizamos a filtragem de dados de nossos DataFrames (então estamos
+falando de pandas), nós não geramos uma cópia do df com as mudanças solici-
+tadas. Nosso df segue intacto, porém o python está apenas acessando as
+linhas (ou índices, também serve) dos quais são indicados acessar. Lembre
+do varal, onde estamos escolhendo as linhas das quais estamos estendendo
+sobre ele.
+
+Isso é extremamente importante e positivo, pois significa que não estamos
+utilizando muito mais da memória RAM de nosso computador duplicando informa-
+ções nele. Ao invés de duplicar, estamos apenas criando uma outra variável
+que aponta para as linhas especificadas pelo filtro.
+
+Isso faz parte da otimização do uso de memória por parte do Pandas.
