@@ -17,18 +17,14 @@ df["DtCriacao"]
 # %% Primeira forma de lidar:
 """
 Podemos simplesmente remover toda e qualquer linha que possua
-pelo menos um valor como 'Na' com o método '.dropna'
+pelo menos um valor como 'Na' com o método '.dropna',
+ou podemos remover as linhas que possuam TODAS as células
+com valores nulos (Na).
 """
 
 df = df.dropna()
-df = df.dropna(how="any") #Igual ao de cima
-
-# %% Segunda forma
-"""
-Remove apenas as linhas que possuem TODOS os valores igual a Na.
-"""
-
-df = df.dropna(how="all") #Desconsidera somente as linhas que possuem todos os valores como NaN.
+df = df.dropna(how="any") #Igual ao de cima, desconsidera linhas que possuam pelo menos uma célular Na
+df = df.dropna(how="all") #Desconsidera somente as linhas que possuem todos os valores como Na.
 
 # %% Exemplo com outro DataFrame
 
@@ -40,6 +36,7 @@ brinquedo = pd.DataFrame(
     }
 )
 brinquedo
+
 # %% Testando diferentes formas de '.dropna()'
 """
 Dropa as linhas com os nulos do dataframe baseando-se
@@ -62,7 +59,12 @@ brinquedo.dropna(how="any", subset=["nome", "idade"])
 Método usado para preencher as células que estão com valor nulo (Na)
 """
 
-brinquedo["idade"] = brinquedo["idade"].fillna(0) #Substitui os valores nulos por 0
+brinquedo["idade"] = brinquedo["idade"].fillna(0)
+#Substitui os valores nulos por 0
+
+brinquedo["idade"] = brinquedo["idade"].fillna(brinquedo["idade"].mean())
+#Substitui os valores nulos pela média
+
 brinquedo
 
 # %% Preenchendo diferentes colunas com diferentes valores
@@ -73,6 +75,7 @@ brinquedo = brinquedo.fillna({
     "salario" : 0
     }
 )
+
 brinquedo
 
 # %% Preenchendo pela média da coluna
