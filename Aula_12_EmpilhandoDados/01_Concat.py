@@ -30,6 +30,9 @@ df2 = pd.DataFrame({
 })
 
 # %%
+# SELECT * FROM df1
+# UNION ALL
+# SELECT * FROM df2
 
 pd.concat([df1, df2]) #Retorna um DataFrame com os dados empilhados, e com os índices mantidos.
 
